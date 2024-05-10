@@ -110,6 +110,7 @@
                             <div class="col-lg-4 bg-grey">
                                 <div class="p-5">
                                     <form action="./checkout" method="post">
+                                        <input type="hidden" name="csrf_token" value="${csrf_token}">
                                         <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                                         <hr class="my-4">
 

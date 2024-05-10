@@ -34,6 +34,7 @@
             </div>
 
             <form class="login100-form validate-form" action="LoginController" method="post">
+                <input type="hidden" name="csrf_token" value="${csrf_token}">
 <%--                <input type = "hidden" name=" action" value="login"/>--%>
 <%--                <input type="hidden" name="csrfLogin" value="<%=csrfLogin%>"/>--%>
 					<span class="login100-form-title">

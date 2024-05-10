@@ -85,6 +85,7 @@
                 </div>
                 <p class="lead">Decription: ${product.description}</p>
                 <form class="d-flex" action="<%=request.getContextPath()%>/bill?idProduct=${product.id}" method="post">
+                    <input type="hidden" name="csrf_token" value="${csrf_token}">
                     <div>
                         <div class="form-outline amountform">
                             <input type="text" id="amount" name="amount" value="1" class="form-control form-control-lg amountinput"/>

@@ -628,6 +628,7 @@
                     <h3>Newsletter </h3>
                     <div class="end-column">
                         <form action="#" class="subscribe" method="post">
+                            <input type="hidden" name="csrf_token" value="${csrf_token}">
                             <input type="email" name="email" placeholder="Email Address" required="">
                             <button><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
                         </form>

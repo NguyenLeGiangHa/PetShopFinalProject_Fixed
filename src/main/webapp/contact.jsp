@@ -153,6 +153,7 @@
               </div>
               <div class="col-lg-6 form-inner-cont order-lg-2 order-1 mb-lg-0 mb-5 ps-lg-4">
                   <form action="https://sendmail.w3layouts.com/submitForm" method="post" class="signin-form">
+                      <input type="hidden" name="csrf_token" value="${csrf_token}">
                       <div class="form-input">
                           <input type="text" name="w3lName" id="w3lName" placeholder="Your name">
                       </div>
@@ -231,6 +232,7 @@
                       <h3>Newsletter </h3>
                       <div class="end-column">
                           <form action="#" class="subscribe" method="post">
+                              <input type="hidden" name="csrf_token" value="${csrf_token}">
                               <input type="email" name="email" placeholder="Email Address" required="">
                               <button><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
                           </form>

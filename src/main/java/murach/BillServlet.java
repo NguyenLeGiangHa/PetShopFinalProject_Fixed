@@ -20,33 +20,48 @@ public class BillServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserBean user = (UserBean) session.getAttribute("user");
         String url = "/cart";
-        if (user == null) {
-            String message = "You must be login to buy product!";
-            session.setAttribute("message", message);
-            url = "/login.jsp";
-        } else {
-            int idbillmax = BillDAO.GetMaxIDBillByIDUser(user.getIdUser());
-            if (idbillmax == 0) {
-                int result = BillDAO.InsertBill(user.getIdUser());
-                idbillmax = BillDAO.GetMaxIDBillByIDUser(user.getIdUser());
-                session.setAttribute("idbillmax", idbillmax);
-                if (result == 0) {
-                    url = "/error.jsp";
+        if (CsrfTokenManage.isValidCsrfToken(request)) {
+            try {
+                if (user == null) {
+                    String message = "You must be login to buy product!";
+                    session.setAttribute("message", message);
+                    url = "/login.jsp";
+                } else {
+                    int idbillmax = BillDAO.GetMaxIDBillByIDUser(user.getIdUser());
+                    if (idbillmax == 0) {
+                        int result = BillDAO.InsertBill(user.getIdUser());
+                        idbillmax = BillDAO.GetMaxIDBillByIDUser(user.getIdUser());
+                        session.setAttribute("idbillmax", idbillmax);
+                        if (result == 0) {
+                            url = "/error.jsp";
+                        }
+                    } else {
+                        session.setAttribute("idbillmax", idbillmax);
+                    }
+                    String action = request.getParameter("action");
+                    int amount = 0;
+                    if (action.equals("default")) {
+                        amount = 1;
+                    } else {
+                        amount = Integer.parseInt(request.getParameter("amount"));
+                    }
+                    session.setAttribute("amount", amount);
                 }
-            } else {
-                session.setAttribute("idbillmax", idbillmax);
             }
-            String action = request.getParameter("action");
-            int amount = 0;
-            if(action.equals("default"))
-            {
-                amount = 1;
+            catch (Exception e) {
+                // Log the exception (optional, but recommended)
+                e.printStackTrace(); // Or use a logging framework
+
+                // Set an error message in the session
+                session.setAttribute("errorMessage", "An error occurred: " + e.getMessage());
+
+                // Redirect to the error page
+                url = "/error.jsp";
             }
-            else {
-                amount = Integer.parseInt(request.getParameter("amount"));
-            }
-            session.setAttribute("amount",amount);
+
         }
+
+
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);

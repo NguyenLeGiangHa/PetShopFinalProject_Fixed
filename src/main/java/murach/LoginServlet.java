@@ -37,6 +37,7 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
     loginBean.setPassword(password);
 
     if (userDao.validate(loginBean)) {
+        CsrfTokenManage.storeCsrfToken(request);
         UserBean user = userDao.getUsername(loginBean);
         HttpSession session = request.getSession();
         session.setAttribute("user", user);
@@ -52,9 +53,16 @@ public void doPost(HttpServletRequest request, HttpServletResponse response)
 }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String csrfLogin = UUID.randomUUID().toString();
-        request.getSession().setAttribute("csrflogin", csrfLogin);
-        doPost(request,response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String csrfToken = UUID.randomUUID().toString();
+        request.getSession().setAttribute("csrfToken", csrfToken);
+        try {
+            String url = "/login.jsp";
+
+            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception e) {
+            response.sendRedirect("error.jsp");
+        }
     }
 }

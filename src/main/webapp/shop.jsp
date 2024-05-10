@@ -90,19 +90,28 @@
     </div>
 </header>
 <!-- //header -->
-
 <div class="bg-dark cate-container">
     <div class="container px-4 px-lg-5 my-5">
         <ul class="category row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
             <c:forEach items="${listCategory}" var="cate">
                 <li class="category-item">
-                    <a href="<%=request.getContextPath()%>/GetProductByCategoryID?idCategory=${cate.idCategory}" class="category-item--link">${cate.category}</a>
+                    <!-- Create a form element to handle the request -->
+                    <form action="<%=request.getContextPath()%>/GetProductByCategoryID" method="POST">
+                        <!-- Add a hidden input field to pass the category ID -->
+                        <input type="hidden" name="idCategory" value="${cate.idCategory}">
+                        <input type="hidden" name="csrf_token" value="${csrf_token}">
+
+                        <!-- Add a button to submit the form -->
+                        <button type="submit" class="category-item--link">
+                                ${cate.category}
+                        </button>
+                    </form>
                 </li>
             </c:forEach>
         </ul>
-
     </div>
 </div>
+
 <!-- Section-->
 <section class="py-5">
     <div class="text-center text-white">
@@ -115,6 +124,7 @@
             </a>
         </div>
         <form action="<%=request.getContextPath()%>/SearchProduct" method="post" class="d-flex search-header">
+            <input type="hidden" name="csrf_token" value="${csrf_token}">
             <input class="form-control" name="search" type="search" placeholder="Enter Keyword..." aria-label="Search" required="">
             <button class="btn btn-style" type="submit">Search</button>
         </form>
@@ -137,9 +147,25 @@
                                         </div>
                                     </div>
                                     <!-- Product actions-->
+<%--                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">--%>
+<%--                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/bill?idProduct=${product.id}">Add to cart</a></div>--%>
+<%--                                    </div>--%>
+<%--                                    --%>
+<%--                                    product actions fixed--%>
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/bill?idProduct=${product.id}">Add to cart</a></div>
+                                        <div class="text-center">
+                                            <!-- Create a form element to handle the POST request -->
+                                            <form action="<%=request.getContextPath()%>/bill" method="POST">
+                                                <!-- Add a hidden input field to pass the product ID -->
+                                                <input type="hidden" name="idProduct" value="${product.id}">
+                                                <input type="hidden" name="csrf_token" value="${csrf_token}">
+                                                <input type="hidden" name="action" value="default">
+                                                <!-- Add the button to submit the form -->
+                                                <button type="submit" class="btn btn-outline-dark mt-auto">Add to cart</button>
+                                            </form>
+                                        </div>
                                     </div>
+
                                 </a>
                             </div>
                         </div>
@@ -164,8 +190,22 @@
                                                 </div>
                                             </div>
                                             <!-- Product actions-->
+<%--                                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">--%>
+<%--                                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/bill?idProduct=${product.id}">Add to cart</a></div>--%>
+<%--                                            </div>--%>
+<%--                                            product actions fixed&ndash;%&gt;--%>
                                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/bill?idProduct=${product.id}">Add to cart</a></div>
+                                                <div class="text-center">
+                                                    <!-- Create a form element to handle the POST request -->
+                                                    <form action="<%=request.getContextPath()%>/bill" method="POST">
+                                                        <!-- Add a hidden input field to pass the product ID -->
+                                                        <input type="hidden" name="idProduct" value="${product.id}">
+                                                        <input type="hidden" name="csrf_token" value="${csrf_token}">
+                                                        <input type="hidden" name="action" value="default">
+                                                        <!-- Add the button to submit the form -->
+                                                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to cart</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
@@ -189,8 +229,23 @@
                                                 </div>
                                             </div>
                                             <!-- Product actions-->
+<%--                                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">--%>
+<%--                                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/bill?idProduct=${product.id}&action=default">Add to cart</a></div>--%>
+<%--                                            </div>--%>
+<%--                                            product actions fixed&ndash;%&gt;--%>
                                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%=request.getContextPath()%>/bill?idProduct=${product.id}&action=default">Add to cart</a></div>
+                                                <div class="text-center">
+                                                    <!-- Create a form element to handle the POST request -->
+                                                    <form action="<%=request.getContextPath()%>/bill" method="POST">
+                                                        <!-- Add a hidden input field to pass the product ID -->
+                                                        <input type="hidden" name="idProduct" value="${product.id}">
+                                                        <input type="hidden" name="csrf_token" value="${csrf_token}">
+                                                        <input type="hidden" name="action" value="default">
+                                                        <input type="hidden" name="action" value="default">
+                                                        <!-- Add the button to submit the form -->
+                                                        <button type="submit" class="btn btn-outline-dark mt-auto">Add to cart</button>
+                                                    </form>git
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
