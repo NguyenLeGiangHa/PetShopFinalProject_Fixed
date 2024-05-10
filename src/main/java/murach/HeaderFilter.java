@@ -24,10 +24,10 @@ public class HeaderFilter implements Filter {
         httpServletResponse.setHeader("X-Frame-Options", "SAMEORIGIN");
         // Set the Content Security Policy header
         httpServletResponse.setHeader("Content-Security-Policy",
-                        "default-src 'self'; frame-ancestors 'self'; form-action 'self'"
-                                + "base-uri 'self'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;"
-                            + "script-src 'nonce-2526c7f26c' http://localhost:*;"
-                            + " img-src 'self'; style-src 'self' 'nonce-2526c7f26c' https://fonts.googleapis.com ");
+                "default-src 'self'; frame-ancestors 'self'; form-action 'self'; "
+                        + "base-uri 'self'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;"
+                        + "script-src 'nonce-2526c7f26c' http://localhost:*;"
+                        + " img-src 'self'; style-src 'self' 'nonce-2526c7f26c' https://fonts.googleapis.com ");
 
         // Add any additional headers you want to set here
 

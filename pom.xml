@@ -129,5 +129,7 @@
                 </executions>
             </plugin>
         </plugins>
+
+        <finalName>haha</finalName>
     </build>
 </project>

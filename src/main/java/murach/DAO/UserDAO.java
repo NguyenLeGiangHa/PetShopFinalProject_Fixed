@@ -27,7 +27,6 @@ public class UserDAO {
             rs = ps.executeQuery();
             status = rs.next();
 
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -45,7 +44,6 @@ public class UserDAO {
             ps.setString(2, loginBean.getPassword());
             rs = ps.executeQuery();
             status = rs.next();
-
 
         } catch (Exception e) {
             System.out.println(e);
@@ -71,7 +69,6 @@ public class UserDAO {
                 admin.setPhoneNumber(rs.getString("PHONENUMBER"));
                 listAdmin.add(admin);
             }
-
 
         } catch (Exception e) {
             System.out.println(e);
@@ -139,8 +136,7 @@ public class UserDAO {
         return result;
     }
 
-    public static int DeleteAdminAccount(int id)
-    {
+    public static int DeleteAdminAccount(int id) {
         int result = 0;
         String sql = "DELETE FROM user WHERE IDUSER=?";
         try {
@@ -148,7 +144,7 @@ public class UserDAO {
             // get a connection
             conn = ConnectDB.getConnection();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             result = ps.executeUpdate();
             conn.close();
         } catch (Exception e) {

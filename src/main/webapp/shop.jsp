@@ -21,7 +21,7 @@
     <title>Pet Shop</title>
     <link nonce="2526c7f26c" rel="icon" type="image/png" href="./assets/images/pet-shop-center-icon_24877-3877.png"/>
     <!-- Bootstrap icons-->
-    <link nonce="2526c7f26c" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link nonce="2526c7f26c" href="./assets/css/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link nonce="2526c7f26c" href="assets/css/style-starter.css" rel="stylesheet" />
     <link nonce="2526c7f26c" href="assets/images" rel="stylesheet" />
@@ -263,7 +263,7 @@
     <div class="container"><p class="m-0 text-center text-white">Copyright by Vngocz &amp; Trguyen </p></div>
 </footer>
 <!-- Bootstrap core JS-->
-<script nonce="2526c7f26c" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script nonce="2526c7f26c" src="./assets/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core theme JS-->
 <script nonce="2526c7f26c" src="js/scripts.js"></script>
