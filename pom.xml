@@ -130,6 +130,5 @@
             </plugin>
         </plugins>
 
-        <finalName>haha</finalName>
     </build>
 </project>
