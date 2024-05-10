@@ -18,7 +18,7 @@ public class ConnectDB {
              //assign from environment variable
             String url = "jdbc:mysql://localhost:3306/petshop";
             String user = "root";
-            String password = "12345";
+            String password = "250903";
 
             // create a connection to the database
             conn = DriverManager.getConnection(url, user, password);

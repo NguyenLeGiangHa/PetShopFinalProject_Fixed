@@ -49,18 +49,19 @@ public class BillServlet extends HttpServlet {
                 }
             }
             catch (Exception e) {
-                // Log the exception (optional, but recommended)
+                // Log the exception
                 e.printStackTrace(); // Or use a logging framework
 
-                // Set an error message in the session
-                session.setAttribute("errorMessage", "An error occurred: " + e.getMessage());
+                // Store the referring URL in the session
+                session.setAttribute("prevUrl", request.getRequestURI());
+
+                // Set a user-friendly error message in the session
+                session.setAttribute("errorMessage", "Sorry, we encountered an error while processing your request. Please try again later.");
 
                 // Redirect to the error page
                 url = "/error.jsp";
             }
-
         }
-
 
         getServletContext()
                 .getRequestDispatcher(url)
@@ -70,5 +71,12 @@ public class BillServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
+        try {
+            String url = "/login.jsp";
+
+            req.getRequestDispatcher(url).forward(req, resp);
+        } catch (Exception e) {
+            resp.sendRedirect("error.jsp");
+        }
     }
 }

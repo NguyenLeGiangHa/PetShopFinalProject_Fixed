@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 @WebServlet("/LoginController")
 public class LoginServlet extends HttpServlet {
@@ -31,6 +32,16 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+
+        // Validate email format to prevent path traversal
+        if (!isValidEmail(email)) {
+            String message = "Sign in fail. Invalid email format!";
+            HttpSession session = request.getSession();
+            session.setAttribute("message", message);
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            rd.include(request, response);
+            return;
+        }
 
         // Sử dụng PreparedStatement để tránh lỗi SQL injection
         LoginBean loginBean = new LoginBean();
@@ -66,5 +77,13 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) {
             response.sendRedirect("error.jsp");
         }
+    }
+
+    // Validate email format using a regular expression
+    private boolean isValidEmail(String email) {
+        // Simple email validation regex
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        return pattern.matcher(email).matches();
     }
 }
